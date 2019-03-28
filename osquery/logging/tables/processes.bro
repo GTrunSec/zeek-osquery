@@ -74,7 +74,7 @@ event host_processes(resultInfo: osquery::ResultInfo,
 
 event bro_init()
         {
-        Log::create_stream(LOG, [$columns=Info, $path="osq-processes"]);
+        Log::create_stream(osquery::logging::processes::LOG, [$columns=Info, $path="osq-processes"]);
 
         local query = [$ev=host_processes,$query="SELECT pid,name,path,cmdline,cwd,root,uid,gid,on_disk,start_time,parent,pgroup FROM processes", $utype=osquery::BOTH];
         osquery::subscribe(query);

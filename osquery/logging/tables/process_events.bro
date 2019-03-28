@@ -1,6 +1,6 @@
 #! Logs process events activity
 
-@load osquery/framework
+@load ../../framework
 
 module osquery::logging::process_events;
 
@@ -56,7 +56,7 @@ event host_process_events(resultInfo: osquery::ResultInfo,
 
 event bro_init()
         {
-        Log::create_stream(LOG, [$columns=Info, $path="osq-process_events"]);
+        Log::create_stream(osquery::logging::process_events::LOG, [$columns=Info, $path="osq-process_events"]);
 
         local query = [$ev=host_process_events,$query="SELECT pid,path,cmdline,cwd,uid,gid,time,parent FROM process_events"];
         osquery::subscribe(query);

@@ -2,8 +2,8 @@
 
 module osquery::host_network;
 
-@load osquery/host_info/hosts_interfaces
-@load osquery/host_info/process_connections
+@load ../../osquery/host_info/hosts_interfaces
+@load ../../osquery/host_info/process_connections
 
 # Add user fields to the connection log record.
 redef record Conn::Info += {

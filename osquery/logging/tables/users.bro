@@ -1,6 +1,6 @@
 #! Logs users activity.
 
-@load osquery/framework
+@load ../../framework
 
 module osquery::logging::users;
 
@@ -70,7 +70,7 @@ event host_users(resultInfo: osquery::ResultInfo,
 
 event bro_init()
         {
-        Log::create_stream(LOG, [$columns=Info, $path="osq-users"]);
+        Log::create_stream(osquery::logging::users::LOG, [$columns=Info, $path="osq-users"]);
 
         local query = [$ev=host_users,$query="SELECT uid,gid,uid_signed,gid_signed,username,description,directory,shell,uuid,type FROM users;", $utype=osquery::BOTH];
         osquery::subscribe(query);

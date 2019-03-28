@@ -1,0 +1,6 @@
+[package]
+description = Bro interface to the host monitor osquery
+tags = osquery
+script_dir = osquery
+depends =
+    bro >=2.6.0

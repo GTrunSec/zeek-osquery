@@ -1,6 +1,6 @@
 module osquery::hosts;
 
-@load osquery/framework
+@load ../framework
 
 export {
     type InterfaceInfo: record {

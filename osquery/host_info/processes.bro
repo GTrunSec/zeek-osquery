@@ -1,8 +1,8 @@
 #! Provide current process information about hosts.
 
-@load osquery/framework
-@load osquery/logging/tables/processes
-@load osquery/logging/tables/process_events
+@load ../framework
+@load ../logging/tables/processes
+@load ../logging/tables/process_events
 
 module osquery::processes;
 

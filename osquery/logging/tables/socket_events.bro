@@ -1,6 +1,6 @@
 #! Logs socket events activity
 
-@load osquery/framework
+@load ../../framework
 
 module osquery::logging::socket_events;
 
@@ -67,7 +67,7 @@ action: string, pid: int, path: string, family: int, protocol: int, local_addres
 
 event bro_init()
         {
-        Log::create_stream(LOG, [$columns=Info, $path="osq-socket_events"]);
+        Log::create_stream(osquery::logging::socket_events::LOG, [$columns=Info, $path="osq-socket_events"]);
 
         local query = [$ev=host_socket_events,$query="SELECT action, pid, path, family, protocol, local_address, remote_address, local_port, remote_port, time, success FROM socket_events"];
         osquery::subscribe(query);

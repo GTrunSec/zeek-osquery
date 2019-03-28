@@ -145,5 +145,5 @@ function send_leave(host_topic: string, group: string)
 
 event bro_init()
 {
-  Log::create_stream(LOG_SEND, [$columns=osquery::Info, $path="osquery_hosts"]);
+Log::create_stream(osquery::hosts::LOG_SEND, [$columns=osquery::Info, $path="osquery_hosts"]);
 }

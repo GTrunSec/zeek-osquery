@@ -1,7 +1,7 @@
 #! Provide current user information about hosts.
 
-@load osquery/framework
-@load osquery/logging/tables/users
+@load ../framework
+@load ../logging/tables/users
 
 module osquery::users;
 

@@ -2,8 +2,8 @@
 
 module osquery::process_connections;
 
-@load osquery/host_info/processes
-@load osquery/host_info/sockets
+@load ../../osquery/host_info/processes
+@load ../../osquery/host_info/sockets
 
 export {
 	redef enum Log::ID += { LOG };

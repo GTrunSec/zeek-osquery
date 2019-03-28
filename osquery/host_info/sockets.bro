@@ -1,9 +1,9 @@
 #! Provide current socket information about hosts.
 
-@load osquery/framework
-@load osquery/logging/tables/listening_ports
-@load osquery/logging/tables/process_open_sockets
-@load osquery/logging/tables/socket_events
+@load ../../osquery/framework
+@load ../../osquery/logging/tables/listening_ports
+@load ../../osquery/logging/tables/process_open_sockets
+@load ../../osquery/logging/tables/socket_events
 
 module osquery::sockets;
 

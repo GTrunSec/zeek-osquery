@@ -1,6 +1,6 @@
 #! Logs mounts activity.
 
-module osquery::mounts;
+module osquery::mount;
 
 export {
 	redef enum Log::ID += { LOG };
@@ -43,7 +43,7 @@ event host_mounts(resultInfo: osquery::ResultInfo,
 
 event bro_init()
 	{
-	Log::create_stream(LOG, [$columns=Info, $path="osq-mounts"]);
+	Log::create_stream(osquery::mount::LOG, [$columns=Info, $path="osq-mounts"]);
 
 	local ev = [$ev=host_mounts,$query="SELECT device,device_alias,path,type,blocks_size,blocks,flags FROM mounts"];
 	osquery::subscribe(ev);

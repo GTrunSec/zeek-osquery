@@ -1,8 +1,8 @@
 #! Logs listening ports activity
 
-@load osquery/framework
+@load ../../framework
 
-module osquery::logging::listening_ports;
+module osquery::listening;
 
 export {
         redef enum Log::ID += { LOG };
@@ -63,7 +63,7 @@ pid: int, fd: int, family: int, socket: int, protocol: int, local_address: strin
 
 event bro_init()
         {
-        Log::create_stream(LOG, [$columns=Info, $path="osq-listening_ports"]);
+        Log::create_stream(osquery::listening::LOG, [$columns=Info, $path="osq-listening_ports"]);
 
         local query = [$ev=host_listening_ports,$query="SELECT pid, fd, family, socket, protocol, address, port from listening_ports WHERE family=2;", $utype=osquery::BOTH];
         osquery::subscribe(query);

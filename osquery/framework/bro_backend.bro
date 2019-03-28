@@ -468,20 +468,20 @@ event Broker::peer_lost(endpoint: Broker::EndpointInfo, msg: string)
 
 event bro_init()
 {
-  Log::create_stream(LOG_SEND, [$columns=osquery::Info, $path="osquery_bros"]);
+Log::create_stream(osquery::bros::LOG_SEND, [$columns=osquery::Info, $path="osquery_bros"]);
   
-  # Listen on Bro announce topic
-  local topic: string = osquery::BroAnnounceTopic;
-  osquery::log_local("info", fmt("Subscribing to bro announce topic %s", topic));
-  Broker::subscribe(topic);
+# Listen on Bro announce topic
+local topic: string = osquery::BroAnnounceTopic;
+osquery::log_local("info", fmt("Subscribing to bro announce topic %s", topic));
+Broker::subscribe(topic);
 
-  # Listen on Bro individual topic
-  topic = fmt("%s/%s", osquery::BroIndividualTopic, Broker::node_id());
-  osquery::log_local("info", fmt("Subscribing to bro individual topic %s", topic));
-  Broker::subscribe(topic);
+# Listen on Bro individual topic
+topic = fmt("%s/%s", osquery::BroIndividualTopic, Broker::node_id());
+osquery::log_local("info", fmt("Subscribing to bro individual topic %s", topic));
+Broker::subscribe(topic);
 
-  # Connect to remote Bro
-  if (|osquery::remote_ip| != 0 && osquery::remote_ip != "0.0.0.0") {
-    Broker::peer(osquery::remote_ip, osquery::remote_port, 10sec);
+# Connect to remote Bro
+if (|osquery::remote_ip| != 0 && osquery::remote_ip != "0.0.0.0") {
+  Broker::peer(osquery::remote_ip, osquery::remote_port, 10sec);
   }
 }
